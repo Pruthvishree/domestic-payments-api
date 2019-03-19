@@ -1,0 +1,27 @@
+{
+    "data": {
+        "consentId": "7290",
+        "initiation": {
+            "instructionIdentification": "ANSM023",
+            "endToEndIdentification": "FRESCO.21302.GFX.37",
+            "instructedAmount": {
+                "amount": "20",
+                "currency": "GBP"
+            },
+            "debtorAccount": {
+                "schemeName": "UK.OBIE.SortCodeAccountNumber",
+                "identification": "11280001234567",
+                "name": "Andrea Smith"
+            },
+            "creditorAccount": {
+                "schemeName": "UK.OBIE.SortCodeAccountNumber",
+                "identification": "08080021325698",
+                "name": "Bob Clements"
+            },
+            "remittanceInformation": {
+                "reference": "FRESCO-037",
+                "unstructured": "Internal ops code 5120103"
+            }
+        }
+    }
+}

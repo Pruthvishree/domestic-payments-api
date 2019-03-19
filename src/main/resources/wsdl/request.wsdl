@@ -1,0 +1,92 @@
+<wsdl:definitions
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:sch="http://www.example.org/party"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.example.org/party"
+	targetNamespace="http://www.example.org/party">
+	<wsdl:types>
+		<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			elementFormDefault="qualified"
+			targetNamespace="http://www.example.org/party">
+			<xs:element name="getPartyRequest">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="accountid" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getPartyResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<!-- <xs:element name="serviceStatus" type="tns:serviceStatus"/> -->
+						<xs:element name="partyinfo" type="tns:partyinfo" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:complexType name="partyinfo">
+				<xs:sequence>
+					<xs:element name="PartyType" type="xs:string" />
+					<xs:element name="Name" type="xs:string" />
+					<xs:element name="EmailAddress" type="xs:string" />
+					<xs:element name="Phone" type="xs:long" />
+					<xs:element name="Mobile" type="xs:long" />
+					<xs:element name="addressinfo" type="tns:addressinfo" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="addressinfo">
+				<xs:sequence>
+					<xs:element name="AddressType" type="xs:string" />
+					<xs:element name="AddressLine" type="xs:string" />
+					<xs:element name="StreetName" type="xs:string" />
+					<xs:element name="BuildingNumber" type="xs:string" />
+					<xs:element name="PostCode" type="xs:string" />
+					<xs:element name="TownName" type="xs:string" />
+					<xs:element name="CountrySubDivision" type="xs:string" />
+					<xs:element name="Country" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<!-- <xs:complexType name="serviceStatus"> <xs:sequence> <xs:element name="statusCode" 
+				type="xs:string"/> <xs:element name="message" type="xs:string"/> </xs:sequence> 
+				</xs:complexType> -->
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="getPartyRequest">
+		<wsdl:part element="tns:getPartyRequest"
+			name="getPartyRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getPartyResponse">
+		<wsdl:part element="tns:getPartyResponse"
+			name="getPartyResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:portType name="party">
+		<wsdl:operation name="getParty">
+			<wsdl:input message="tns:getPartyRequest"
+				name="getPartyRequest">
+			</wsdl:input>
+			<wsdl:output message="tns:getPartyResponse"
+				name="getPartyResponse">
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="partySoap11" type="tns:party">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="getParty">
+			<soap:operation soapAction="" />
+			<wsdl:input name="getPartyRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getPartyResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="partyService">
+		<wsdl:port binding="tns:partySoap11" name="partySoap11">
+			<soap:address
+				location="http://partydetailssoap.cfapps.io:80/ws" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
